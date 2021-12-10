@@ -7,7 +7,7 @@ pipeline {
 	environment {
 		PROJECT_ID = 'axiomatic-folio-332019'
                 CLUSTER_NAME = 'k8s-cluster'
-                LOCATION = 'us-central1-a'
+                LOCATION = 'us-west4-b'
                 CREDENTIALS_ID = 'kubernetes'		
 	}
 	
