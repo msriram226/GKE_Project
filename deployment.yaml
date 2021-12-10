@@ -17,7 +17,7 @@ spec:
   spec:
    containers:
    - name: myapp
-     image: msriram226/devops:tagversion
+     image: msriram226/gcp_devops_project:tagversion
      ports:
      - containerPort: 8080
 
