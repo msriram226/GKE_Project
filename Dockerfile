@@ -1,0 +1,5 @@
+FROM tomcat:8.0.20-jre8
+
+RUN mkdir /usr/local/tomcat/webapps/myapp
+
+COPY kubernetes/target/kubernetes-1.0-SRIRAM.war /usr/local/tomcat/webapps/kubernetes_sriram.war
