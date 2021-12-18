@@ -53,7 +53,7 @@ pipeline
 			  
 			    }
 		    }
-	    }
+	    
 	    
 	    stage('Deploy to K8s') {
 		    steps{
@@ -69,7 +69,7 @@ pipeline
 			    echo "Deployment Finished ..."
 		    }
         }
-    }
+    } 
 }
 def getDockerTag()
 {
