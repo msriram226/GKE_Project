@@ -1,9 +1,9 @@
-pipeline {
+pipeline 
+{
     agent any
 	tools {
 		maven 'maven'
 	}
-	
 	environment {
 		BUILD_ID = getDockerTag()
         IMAGE_WITH_TAG = 'msriram226/gcp_devops_project:${BUILD_ID}'
@@ -46,12 +46,10 @@ pipeline {
 		    steps {
 			    script {
 				    echo "Push Docker Image"
-				     {
-                        withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')])
-            			sh "docker login -u msriram226 -p ${dockerhub}"
-                        sh "docker push ${IMAGE_URL_WITH_TAG}"
-				    }
-				        
+				        withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+            			sh "docker login -u msriram226 -p ${dockerhub}" } {
+                        sh "docker push ${IMAGE_URL_WITH_TAG}"  }
+				    }  
 			  
 			    }
 		    }
@@ -70,11 +68,11 @@ pipeline {
 				step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
 			    echo "Deployment Finished ..."
 		    }
-	    }
+        }
     }
 }
-def getDockerTag(){
+def getDockerTag()
+{
     def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
 }
-
