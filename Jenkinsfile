@@ -10,7 +10,8 @@ pipeline
 		PROJECT_ID = 'axiomatic-folio-332019'
                 CLUSTER_NAME = 'k8s-cluster'
                 LOCATION = 'us-west4-b'
-                CREDENTIALS_ID = 'kubernetes'		
+                CREDENTIALS_ID = 'kubernetes'
+                CREDENTIALS_ID = 'dockerhub'		
 	}
 	
     stages {
@@ -47,7 +48,7 @@ pipeline
 			    script 
                 {
 				    echo "Push Docker Image"
-				    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+				    {
             		sh "docker login -u msriram226 -p ${dockerhub}" 
                     sh "docker push ${IMAGE_URL_WITH_TAG}"  }
 				} 
