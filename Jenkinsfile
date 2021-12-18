@@ -48,15 +48,13 @@ pipeline
 			    script 
                 {
 				    echo "Push Docker Image"
-				    {
-            		sh "docker login -u msriram226 -p ${dockerhub}" 
-                    sh "docker push ${IMAGE_URL_WITH_TAG}"  }
+				    sh "docker login -u msriram226 -p ${dockerhub}" 
+                    sh "docker push ${IMAGE_URL_WITH_TAG}" 
 				} 
             }  
         }
 	    
-	    
-	    
+	  
 	    stage('Deploy to K8s') {
 		    steps{
 			    echo "Deployment started ..."
