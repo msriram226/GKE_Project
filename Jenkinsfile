@@ -50,7 +50,7 @@ pipeline
 				    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
             		sh "docker login -u msriram226 -p ${dockerhub}"
 				    }
-				    myimage.push("${env.BUILD_ID}")
+				    myimage.push("${env.IMAGE_WITH_TAG}")
 				}
             }  
         }
