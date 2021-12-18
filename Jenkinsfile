@@ -3,7 +3,7 @@ pipeline {
 	tools {
 		maven 'maven'
 	}
-	
+{
 	environment {
 		BUILD_ID = getDockerTag()
         IMAGE_WITH_TAG = 'msriram226/gcp_devops_project:${BUILD_ID}'
@@ -68,11 +68,11 @@ pipeline {
 				step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
 			    echo "Deployment Finished ..."
 		    }
-	    }
-    }
-    
+        }
+    }   
+
 def getDockerTag(){
     def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
 }
-
+}
