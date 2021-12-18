@@ -37,7 +37,7 @@ pipeline {
 		    steps {
 			    sh 'whoami'
 			    script {
-				    myimage = docker.build -t ("${env.IMAGE_WITH_TAG}")
+				    myimage = docker.build . ("${env.IMAGE_WITH_TAG}")
 			    }
 		    }
 	    }
