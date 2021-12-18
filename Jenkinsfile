@@ -6,7 +6,7 @@ pipeline {
 	
 	environment {
 		BUILD_ID = getDockerTag()
-        IMAGE_WITH_TAG = "{msriram226/gcp_devops_project:${BUILD_ID}}"
+        IMAGE_WITH_TAG = 'msriram226/gcp_devops_project:${BUILD_ID}'
 		PROJECT_ID = 'axiomatic-folio-332019'
                 CLUSTER_NAME = 'k8s-cluster'
                 LOCATION = 'us-west4-b'
