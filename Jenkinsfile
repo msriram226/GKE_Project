@@ -45,11 +45,12 @@ pipeline
 	    stage("Push Docker Image") {
 		    steps {
 			    script 
-               {
+                {
 				    echo "Push Docker Image"
-				    sh "docker login -u msriram226 -p ${dockerhub}" 
-                    sh "docker push ${IMAGE_URL_WITH_TAG}"  
-                }
+				    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+            		sh "docker login -u msriram226 -p ${dockerhub}" 
+                    sh "docker push ${IMAGE_URL_WITH_TAG}"  }
+				} 
             }  
         }
 	    
