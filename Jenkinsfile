@@ -8,9 +8,9 @@ pipeline
 		BUILD_ID = getDockerTag()
         IMAGE_WITH_TAG = 'msriram226/gcp_devops_project:${BUILD_ID}'
 		PROJECT_ID = 'axiomatic-folio-332019'
-                CLUSTER_NAME = 'k8s-cluster'
-                LOCATION = 'us-west4-b'
-                CREDENTIALS_ID = 'kubernetes'
+        CLUSTER_NAME = 'k8s-cluster'
+        LOCATION = 'us-west4-b'
+        CREDENTIALS_ID = 'kubernetes'
                 	
 	}
 	
@@ -45,17 +45,13 @@ pipeline
 	    
 	    stage("Push Docker Image") {
 		    steps {
-			    script 
-                {
-				    echo "Push Docker Image"
-                    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+			        echo "Push Docker Image"
+                    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) 
 				    sh "docker login -u msriram226 -p ${dockerhub}" 
-                    } 
-                    {
-                    sh "docker push ${IMAGE_URL_WITH_TAG}"  }
-				} 
+                    sh "docker push ${IMAGE_URL_WITH_TAG}"  
+                }
             }  
-        }
+        
 	    
 	  
 	    stage('Deploy to K8s') {
