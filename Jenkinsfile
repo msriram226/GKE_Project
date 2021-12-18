@@ -36,7 +36,7 @@ pipeline {
 		    steps {
 			    sh 'whoami'
 			    script {
-				    myimage = docker.build("msriram226/gcp_devops_project:${env.BUILD_ID}")
+				    myimage = docker.build . -t ("msriram226/gcp_devops_project:${env.BUILD_ID}")
 			    }
 		    }
 	    }
