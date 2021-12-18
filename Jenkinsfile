@@ -1,9 +1,9 @@
-pipeline {
+pipeline 
+{
     agent any
 	tools {
 		maven 'maven'
 	}
-{
 	environment {
 		BUILD_ID = getDockerTag()
         IMAGE_WITH_TAG = 'msriram226/gcp_devops_project:${BUILD_ID}'
@@ -69,10 +69,9 @@ pipeline {
 			    echo "Deployment Finished ..."
 		    }
         }
-    }   
-
-def getDockerTag(){
+    }
+def getDockerTag()
+{
     def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
-}
 }
