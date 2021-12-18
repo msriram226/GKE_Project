@@ -5,6 +5,7 @@ pipeline {
 	}
 	
 	environment {
+		BUILD_ID = getDockerTag()
 		PROJECT_ID = 'axiomatic-folio-332019'
                 CLUSTER_NAME = 'k8s-cluster'
                 LOCATION = 'us-west4-b'
@@ -68,4 +69,8 @@ pipeline {
 		    }
 	    }
     }
+
+def getDockerTag(){
+    def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
+    return tag
 }
