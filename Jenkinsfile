@@ -43,13 +43,12 @@ pipeline
 		    }
 	    }
 	    
-	     stage("Push Docker Image") {
+	    stage("Push Docker Image") {
             steps {
+                echo "Push Docker Image"
 		        script {
-				    echo "Push Docker Image"
 				    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-            		sh "docker login -u msriram226 -p ${dockerhub}"
-				    }
+            		sh "docker login -u msriram226 -p ${dockerhub}" }
 				    myimage.push()
 				}
             }  
