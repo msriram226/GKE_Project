@@ -25,7 +25,7 @@ pipeline
 			    sh 'mvn clean package'
 		    }
 	    }
-    }   
+    
 	    stage('SonarQube analysis') {
         steps{
                withSonarQubeEnv('sonarqube-8.3') { 
