@@ -46,7 +46,7 @@ pipeline
 		    }
 	    }
 	    
-	    stage("Push Docker Image") {
+	     stage("Push Docker Image") {
 		    steps {
 			    script {
 				    echo "Push Docker Image"
@@ -57,6 +57,7 @@ pipeline
 			  
 			    }
 		    }
+	    }
 	    
 	    stage('Deploy to K8s') {
 		    steps{
@@ -73,9 +74,10 @@ pipeline
 		    }
         }
     }
-}
+
 def getDockerTag()
 {
     def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
+}
 }
