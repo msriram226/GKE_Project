@@ -57,8 +57,6 @@ pipeline
 	    stage('Deploy to K8s') {
 		    steps{
 			    echo "Deployment started ..."
-			    sh 'ls -ltr'
-			    sh 'pwd'
 			    sh "sed -i 's/tagversion/${env.BUILD_ID}/g' serviceLB.yaml"
 				sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
 			    echo "Start deployment of serviceLB.yaml"
