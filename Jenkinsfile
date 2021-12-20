@@ -25,16 +25,13 @@ pipeline
 			    sh 'mvn clean package'
 		    }
 	    }
-	    
+    }   
 	    stage('SonarQube analysis') {
-//    def scannerHome = tool 'SonarScanner 4.0';
         steps{
-        withSonarQubeEnv('sonarqube-8.3') { 
-        // If you have configured more than one global server connection, you can specify its name
-//      sh "${scannerHome}/bin/sonar-scanner"
-        sh "mvn sonar:sonar"
-    }
-        }
+               withSonarQubeEnv('sonarqube-8.3') { 
+                 sh "mvn sonar:sonar"
+               }
+            }
         }
 	    
 	    stage('Build Docker Image') {
@@ -70,11 +67,10 @@ pipeline
 				step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
 			    echo "Deployment Finished ..."
 		    }
-        }
+        }    
     }
 def getDockerTag()
 {
     def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
 }
-}    
