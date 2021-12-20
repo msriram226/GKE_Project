@@ -59,7 +59,7 @@ pipeline
 			    echo "Deployment started ..."
 			    sh 'ls -ltr'
 			    sh 'pwd'
-                sh "awk '{gsub(/tagversion/,${env.BUILD_ID})}1' serviceLB.yaml"
+                sh "awk '{gsub(/tagversion/,"${env.BUILD_ID}")}1' serviceLB.yaml"
                 sh "sed -i 's/tagversion/${env.BUILD_ID}/g' serviceLB.yaml"
 				sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
 			    echo "Start deployment of serviceLB.yaml"
