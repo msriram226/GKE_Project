@@ -59,6 +59,7 @@ pipeline
 			    echo "Deployment started ..."
 			    sh 'ls -ltr'
 			    sh 'pwd'
+                sh "sed -i 's/^tagversion=.*/tagversion=${env.BUILD_ID}/' serviceLB.yaml"
                 sh "sed -e 's/tagversion/'${env.BUILD_ID}'/g' serviceLB.yaml" 
                 sh "sed -e 's/tagversion/${env.BUILD_ID}/g' serviceLB.yaml"
 				sh "sed -ie 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
